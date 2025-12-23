@@ -1,0 +1,8 @@
+environment: "Pendulum-v1"
+algorithm: "PPO"
+timesteps: 300000
+
+reward:
+  angle_weight: 1.0
+  velocity_weight: 0.1
+  torque_penalty: 0.001

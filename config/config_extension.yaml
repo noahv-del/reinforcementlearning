@@ -1,0 +1,7 @@
+environment: "Pendulum-v1"
+algorithm: "PPO"
+timesteps: 300000
+checkpoint_freq: 10000
+
+extension:
+  learning_rate: 0.0001

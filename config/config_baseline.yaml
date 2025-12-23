@@ -1,0 +1,6 @@
+environment: "Pendulum-v1"
+algorithm: "PPO"
+timesteps: 300000
+checkpoint_freq: 10000
+num_trials: 3
+seed: 42
