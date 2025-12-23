@@ -1,6 +1,6 @@
 from stable_baselines3 import PPO
 import gymnasium as gym
-from src.utils import load_config
+from utils import load_config
 from stable_baselines3.common.callbacks import CheckpointCallback
 import os
 
