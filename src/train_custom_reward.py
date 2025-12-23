@@ -1,5 +1,5 @@
-from custom_env_wrapper import CustomRewardWrapper
-from utils import load_config
+from src.custom_env_wrapper import CustomRewardWrapper
+from src.utils import load_config
 import gymnasium as gym
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import CheckpointCallback
