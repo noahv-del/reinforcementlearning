@@ -9,25 +9,26 @@ def train_extension(cfg_path="config/config_extension.yaml"):
     cfg = load_config(cfg_path)
     os.makedirs("results/extension", exist_ok=True)
 
-    env = gym.make(cfg["environment"])
+    for lr in cfg["extension"]["learning_rates"]:
+        env = gym.make(cfg["environment"])
 
-    model = PPO(
-        "MlpPolicy",
-        env,
-        learning_rate=cfg["extension"]["learning_rate"],
-        verbose=1,
-        tensorboard_log="logs/extension"
-    )
+        model = PPO(
+            "MlpPolicy",
+            env,
+            learning_rate=lr,
+            verbose=1,
+            tensorboard_log=f"logs/extension/lr_{lr}"
+        )
 
-    cb = CheckpointCallback(
-        save_freq=cfg["checkpoint_freq"],
-        save_path="logs/extension/checkpoints"
-    )
+        cb = CheckpointCallback(
+            save_freq=cfg["checkpoint_freq"],
+            save_path=f"logs/extension/lr_{lr}/checkpoints"
+        )
 
-    model.learn(total_timesteps=cfg["timesteps"], callback=cb)
-    model.save("results/extension/ppo_lr_tuned")
+        model.learn(total_timesteps=cfg["timesteps"], callback=cb)
+        model.save(f"results/extension/ppo_lr_{lr}")
 
-    env.close()
+        env.close()
 
 
 if __name__ == '__main__':
